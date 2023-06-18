@@ -5,6 +5,11 @@
         "./greeting/Cargo.toml",
         "./greeting/Cargo.toml",
         "./greeting/Cargo.toml",
-        "./greeting/Cargo.toml"
+        "./greeting/Cargo.toml",
+        ".\\greeting\\Cargo.toml",
+        ".\\greeting\\Cargo.toml",
+        ".\\greeting\\Cargo.toml",
+        ".\\greeting\\Cargo.toml",
+        ".\\greeting\\Cargo.toml"
     ]
 }
