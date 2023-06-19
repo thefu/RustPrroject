@@ -1,0 +1,61 @@
+struct ListNode<T> {
+    value: T,
+    next: Option<Box<ListNode<T>>>,
+}
+
+impl<T> ListNode<T> {
+    fn new(value: T) -> Self {
+        ListNode {
+            value,
+            next: None,
+        }
+    }
+}
+
+fn reverse_list<T>(head: Option<Box<ListNode<T>>>) -> Option<Box<ListNode<T>>> {
+    let mut prev: Option<Box<ListNode<T>>> = None;
+    let mut current = head;
+
+    while let Some(mut node) = current {
+        let next = node.next.take();
+        node.next = prev;
+        prev = Some(node);
+        current = next;
+    }
+
+    prev
+}
+
+fn main() {
+    // Create a sample linked list: 1 -> 2 -> 3 -> 4 -> 5
+    let mut node5 = Box::new(ListNode::new(5));
+    let mut node4 = Box::new(ListNode::new(4));
+    let mut node3 = Box::new(ListNode::new(3));
+    let mut node2 = Box::new(ListNode::new(2));
+    let node1 = Box::new(ListNode::new(1));
+
+    node2.next = Some(node1);
+    node3.next = Some(node2);
+    node4.next = Some(node3);
+    node5.next = Some(node4);
+
+    let head = Some(node5);
+
+    // Reverse the linked list
+    let reversed_head = reverse_list(head);
+
+    // Print the reversed linked list
+    let mut current = reversed_head;
+    while let Some(node) = current {
+        println!("Node value: {}", node.value);
+        current = node.next;
+    }
+}
+
+/**
+ * 在上面的代码中，我们首先定义了一个 ListNode 结构体，它包含一个 value 字段表示节点的值，以及一个 next 字段表示指向下一个节点的指针。
+ * 然后，我们编写了 reverse_list 函数来反转链表。该函数使用了三个指针 prev、current 和 next，其中 prev 指向已反转部分的头部，current 指向当前待反转的节点，next 保存了当前节点的下一个节点。
+ * 在 while 循环中，我们迭代地将 current 的 next 指针反转指向 prev，然后更新 prev 为当前节点，并更新 current 为下一个节点。最后，返回反转后的链表头部。
+ * 在 main 函数中，我们创建了一个包含5个节点的链表，然后调用 reverse_list 函数来反转链表，并打印出反转后的节点值。输出结果应该是从5到1的递减顺序。
+ * 请注意，上述实现是基于单向链表的反转。如果链表是双向链表，需要相应地调整节点结构和反转逻辑。
+ */
