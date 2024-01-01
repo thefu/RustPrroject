@@ -33,3 +33,7 @@ fn make_copy(some_integer: i32) {
     println("{}", some_integer);
 }
 //函数结束，参数some_integer是基本类型，无需释放
+
+/**
+ * 如果变量被当作参数传入函数，那么它和移动的效果是一样的。
+ */
